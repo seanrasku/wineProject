@@ -1,19 +1,21 @@
-clear; close all; clc
+%clear; close all; clc
 % Programming exercise 5
+myfile = 'winequality.csv';
+mydata = csvread(myfile);
 
-load("digit_data.mat");
-
+X = mydata(2:end, 1:end-1);
+z = mydata(2:end, end);
+y = prepY(z)
 % Randomly select 100 data points to display
 sel = randperm(size(X, 1));
-
 displayData(X(sel(1:100), :), "sample data");
 
 % Select a random 80% as the training set and 20% as the test set
 
-X_test = X(sel(4001:end), :);
-X = X(sel(1:4000), :);
-y_test = y(sel(4001:end));
-y = y(sel(1:4000));
+X_test = X(sel(5201:end), :);
+X = X(sel(1:5200), :);
+y_test = y(sel(5201:end));
+y = y(sel(1:5200));
 
 % Do the training on the training set
 
@@ -23,12 +25,12 @@ n1 = columns(X);
 n = [n1, 30, max(y)];
 
 Y = prepareY(y);
+
 Theta = initTheta(n);
 
 lambda = 1;
 alpha = 2;
 maxIter = 500;
-
 printf('\nHere are some samples from the training dataset.\nPress enter to start training.');
 pause;
 
@@ -37,7 +39,7 @@ pause;
 plotCost(costs);
 
 % Print training and test accuracy
-forwardPropagate(Theta, X)
+forwardPropagate(Theta, X);
 dbstop in run.m if error
 est = forwardPropagate(Theta, X){end};
 

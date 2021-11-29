@@ -19,5 +19,4 @@ function D = backPropagate(thetas, A, Y, reg)
 		notZero = n + (reg * matT);
 		D{l} = [p notZero]./length(Y);
 	endfor
-	D
 end

@@ -1,4 +1,4 @@
-clear; close all; clc
+clear; close all; clc;
 % Programming exercise 5
 myfile = "winequality.csv";
 mydata = csvread(myfile);
@@ -11,18 +11,12 @@ sel = randperm(size(X, 1));
 displayData(X(sel(1:100), :), "sample data");
 learningCurve(X, y);
 
-forcurve = randperm(size(X, 1));
 % Select a random 80% as the training set and 20% as the test set
 
 X_test = X(sel(5201:end), :);
 X = X(sel(1:5200), :);
 y_test = y(sel(5201:end));
 y = y(sel(1:5200));
-
-% testX = X(sel(5201:end), :);
-% trainX = X(sel(1:5200), :);
-% testY = y(sel(5201:end));
-% trainY = y(sel(1:5200));
 
 % Do the training on the training set
 
@@ -31,23 +25,15 @@ n1 = columns(X);
 
 n = [n1, 30, max(y)];
 
-%nn = [columns(trainX), 30, max(trainY)];
-
 Y = prepareY(y);
-% yT = prepareY(trainY);
-% yTT = prepareY(testY);
 Theta = initTheta(n);
-%Theta1 = initTheta(nn);
+
 lambda = 1;
 alpha = 2;
 maxIter = 500;
+
 printf('\nHere are some samples from the training dataset.\nPress enter to start training.');
 pause;
-
-% for i = 100:length(trainX)
-% 	[Theta, costs] = gradientDescent(Theta, trainX(1:i, :), yT(1:i, :), lambda, alpha, maxIter);
-% 	[Theta1, costs1] = gradientDescent(Theta1, testX(1:i, :), yTT(1:i, :), lambda, alpha, maxIter);
-
 
 [Theta, costs] = gradientDescent(Theta, X, Y, lambda, alpha, maxIter);
 

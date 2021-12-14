@@ -3,22 +3,14 @@ function plotLearningCurve(TrainCost, TestCost)
 	figure("name", "Cost during learning"); % open a new figure window
 	hold on;
 	
-	color = ['r-' 'g-' 'b-' 'k-' 'r*' 'g*' 'b*' 'k*'];
-	
-	for	i = 1:rows(TrainCost)
-	
-		plot(0:length(TrainCost(i, :))-1, TrainCost(i, :), color(i), 'MarkerSize', 10);
-	
-	end
+	%color = ['r-' 'g-' 'b-' 'k-' 'r*' 'g*' 'b*' 'k*'];
+	x = 1:30;
+	x2 = 1:30;
+	plot(x, TrainCost, "g");
+	plot(x2, TestCost, "b");
 
-	color2 = ['r-' 'g-' 'b-' 'k-' 'r*' 'g*' 'b*' 'k*'];
+	%color2 = ['r-' 'g-' 'b-' 'k-' 'r*' 'g*' 'b*' 'k*'];
 	
-	for	i = 1:rows(TestCost)
-	
-		plot(0:length(TestCost(i, :))-1, TestCost(i, :), color2(i), 'MarkerSize', 10);
-	
-	end
-	
-	set(gca, 'linewidth', 2, 'fontsize', 22);
+	%set(gca, 'linewidth', 2, 'fontsize', 22);
 	xlabel('iterations'); % Set the x-axis label
 	ylabel('cost'); % Set the y-axis label

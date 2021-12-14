@@ -17,18 +17,26 @@ function learningCurve(X, y)
 	lambda = 1;
 	alpha = 2;
 	maxIter = 500;
-	figure("name", "Learning Curve");
-	hold on;
 
-	color = ['r-' 'g-' 'b-' 'k-' 'r*' 'g*' 'b*' 'k*'];
-	for i = 1:50:m
+	cost1 = [];
+	cost2 = [];
+	trainCost = [];
+	testCost = [];
+
+	for i = 1:30
 		tx = trainX(1:i, :);
 		ty = train_Y(:, 1:i);
+		A = forwardPropagate(Theta, tx){end};
+		B = forwardPropagate(Theta, X_test){end};
 
 		[Theta, nothingHere] = gradientDescent(Theta, tx, ty, lambda, alpha, maxIter);
-		cost1 = J(Theta, forwardPropagate(Theta, tx){end}, ty, lambda)
-		cost2 = J(Theta, forwardPropagate(Theta, X_test){end}, test_Y, lambda);
-		plot(i, cost1, 'MarkerSize', 10);
-		plot(i, cost2, 'MarkerSize', 10);
+		cost1 = [cost1; J(Theta, A, ty, lambda)];
+		disp("Cost = "), disp(cost1(end))
+		trainCost = [trainCost; cost1(end)];
+		cost2 = [cost2; J(Theta, B, test_Y, lambda)];
+		testCost = [testCost; cost2(end)];
+
 	endfor
+
+	plotLearningCurve(trainCost, testCost);
 end

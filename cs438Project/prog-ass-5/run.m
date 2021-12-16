@@ -6,6 +6,7 @@ mydata = csvread(myfile);
 X = mydata(2:end, 1:end-1);
 z = mydata(2:end, end);
 y = prepY(z);
+
 % Randomly select 100 data points to display
 sel = randperm(size(X, 1));
 displayData(X(sel(1:100), :), "sample data");
@@ -26,6 +27,7 @@ n1 = columns(X);
 n = [n1, 30, max(y)];
 
 Y = prepareY(y);
+
 Theta = initTheta(n);
 
 lambda = 1;

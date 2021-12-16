@@ -14,8 +14,8 @@ function learningCurve(X, y)
 	train_Y= prepareY(trainY);
 	test_Y = prepareY(y_test);
 	Theta = initTheta(n);
-	lambda = 1;
-	alpha = 2;
+	lambda = 0.65;
+	alpha = 3;
 	maxIter = 500;
 
 	cost1 = [];
@@ -30,11 +30,11 @@ function learningCurve(X, y)
 		B = forwardPropagate(Theta, X_test){end};
 
 		[Theta, nothingHere] = gradientDescent(Theta, tx, ty, lambda, alpha, maxIter);
-		cost1 = [cost1; J(Theta, A, ty, lambda)];
+		cost1 = [cost1 J(Theta, A, ty, lambda)];
 		disp("Cost = "), disp(cost1(end))
-		trainCost = [trainCost; cost1(end)];
-		cost2 = [cost2; J(Theta, B, test_Y, lambda)];
-		testCost = [testCost; cost2(end)];
+		trainCost = [trainCost cost1(end)];
+		cost2 = [cost2 J(Theta, B, test_Y, lambda)];
+		testCost = [testCost cost2(end)];
 
 	endfor
 

@@ -3,23 +3,6 @@ clear; close all; clc;
 myfile = "winequality.csv";
 mydata = csvread(myfile);
 
-<<<<<<< HEAD
-[X, y] = loadData('../winequality.csv');
-
-% Randomly select 100 data points to display
-sel = randperm(size(X, 1));
-
-% displayData(X(sel(1:100), :), "sample data");
-
-split = round(length(y) * 0.8);
-
-% Select a random 80% as the training set and 20% as the test set
-
-X_test = X(sel(split+1:end), :);
-X = X(sel(1:split), :);
-y_test = y(sel(split+1:end));
-y = y(sel(1:split));
-=======
 X = mydata(2:end, 1:end-1);
 z = mydata(2:end, end);
 y = prepY(z);
@@ -35,7 +18,6 @@ X_test = X(sel(5201:end), :);
 X = X(sel(1:5200), :);
 y_test = y(sel(5201:end));
 y = y(sel(1:5200));
->>>>>>> 7b7bc743e123f37147885e9132a570199d4851c9
 
 % Do the training on the training set
 

@@ -6,4 +6,5 @@ function Y = prepareY(y)
 		Y(i, val) = 1;
 		endfor
 	Y = Y';
-	end
+	% Y = (y > 5)';
+end

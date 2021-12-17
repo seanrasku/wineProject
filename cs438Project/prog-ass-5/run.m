@@ -1,26 +1,28 @@
 clear; close all; clc
 % Programming exercise 5
 
-load("digit_data.mat");
+[X, y] = loadData('../winequality.csv');
 
 % Randomly select 100 data points to display
 sel = randperm(size(X, 1));
 
-displayData(X(sel(1:100), :), "sample data");
+% displayData(X(sel(1:100), :), "sample data");
+
+split = round(length(y) * 0.8);
 
 % Select a random 80% as the training set and 20% as the test set
 
-X_test = X(sel(4001:end), :);
-X = X(sel(1:4000), :);
-y_test = y(sel(4001:end));
-y = y(sel(1:4000));
+X_test = X(sel(split+1:end), :);
+X = X(sel(1:split), :);
+y_test = y(sel(split+1:end));
+y = y(sel(1:split));
 
 % Do the training on the training set
 
 m = rows(X);
 n1 = columns(X);
 
-n = [n1, 30, max(y)];
+n = [n1, 30, 30, max(y)];
 
 Y = prepareY(y);
 Theta = initTheta(n);
@@ -29,7 +31,7 @@ lambda = 1;
 alpha = 2;
 maxIter = 500;
 
-printf('\nHere are some samples from the training dataset.\nPress enter to start training.');
+% printf('\nHere are some samples from the training dataset.\nPress enter to start training.');
 pause;
 
 [Theta, costs] = gradientDescent(Theta, X, Y, lambda, alpha, maxIter);
@@ -37,7 +39,7 @@ pause;
 plotCost(costs);
 
 % Print training and test accuracy
-forwardPropagate(Theta, X)
+forwardPropagate(Theta, X);
 dbstop in run.m if error
 est = forwardPropagate(Theta, X){end};
 

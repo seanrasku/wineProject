@@ -6,14 +6,25 @@ import neuralnetworks
 
 def main():
     filename = "winequality.csv"
-    X_train, Y_train, X_test, Y_test, X, Y = neuralnetworks.buildNetwork(filename)
-    rf = neuralnetworks.randForestClassifier(X_train, Y_train)
-    mlp = neuralnetworks.mlpClassifier(X_train, Y_train)
-    # neuralnetworks.learningCurve(rf, X_train, Y_train)
-    # neuralnetworks.learningCurve(mlc, X_train, Y_train)
-    # neuralnetworks.ROC(rf, X_test, Y_test)
-    # neuralnetworks.ROC(mlp, X_test, Y_test)
+    X_trainQ, Y_trainQ, X_testQ, Y_testQ = neuralnetworks.buildQuality(filename)
+    X_trainC, Y_trainC, X_testC, Y_testC = neuralnetworks.buildColor(filename)
+    #
+    # #Classification By Quality:
+    # # rf = neuralnetworks.randForestClassifier(X_trainQ, Y_trainQ)
+    # mlp = neuralnetworks.mlpClassifier(X_trainQ, Y_trainQ)
+    # # neuralnetworks.learningCurve(rf, X_trainQ, Y_trainQ)
+    # neuralnetworks.learningCurve(mlp, X_trainQ, Y_trainQ)
+    # # neuralnetworks.ROC(rf, X_testQ, Y_testQ)
+    # neuralnetworks.ROC(mlp, X_testQ, Y_testQ)
+    #
 
+    # Classification By Color:
+    # rf = neuralnetworks.randForestClassifier(X_trainC, Y_trainC)
+    mlp = neuralnetworks.mlpClassifier(X_trainC, Y_trainC)
+    # neuralnetworks.learningCurve(rf, X_trainC, Y_trainC)
+    neuralnetworks.learningCurve(mlp, X_trainC, Y_trainC)
+    # neuralnetworks.ROC(rf, X_testC, Y_testC)
+    neuralnetworks.ROC(mlp, X_testC, Y_testC)
 if __name__ == '__main__':
     main()
 

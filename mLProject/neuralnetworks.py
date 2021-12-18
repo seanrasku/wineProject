@@ -4,25 +4,43 @@ from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import learning_curve
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import numpy as np
 
-def buildNetwork(filename):
+def buildQuality(filename):
     with open(filename) as csvfile:
+        first = csvfile.readline()
         arr = np.loadtxt(csvfile, delimiter=',')
     data = np.array(arr)
+    labels = data[0, :]
     X = data[0:len(data), 0:-1]
     y = data[0:len(data), -1]
+    sc = StandardScaler()
     y[y <= 5] = 0
     y[y > 5] = 1
-    selectionX = np.random.permutation(X)
-    selectionY = np.random.permutation(y)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    X_train = selectionX[1:5200, :]
-    X_test = selectionX[5201:len(selectionX), :]
-    Y_train = selectionY[1:5200]
-    Y_test = selectionY[5201:len(selectionY)]
-    return X_train, Y_train, X_test, Y_test, X, y
+    X_train = sc.fit_transform(X_train)
+    X_test = sc.transform(X_test)
+    return X_train, Y_train, X_test, Y_test
+
+def buildColor(filename):
+    with open(filename) as csvfile:
+        first = csvfile.readline()
+        arr = np.loadtxt(csvfile, delimiter=',')
+    data = np.array(arr)
+    labels = data[0, :]
+    X = data[0:len(data), 0:-2]
+    y = data[0:len(data), -2]
+    np.append(X, data[0:len(data), -1])
+    X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    sc = StandardScaler()
+    X_train = sc.fit_transform(X_train)
+    X_test = sc.transform(X_test)
+    return X_train, Y_train, X_test, Y_test
 
 def randForestClassifier(X_train, Y_train):
     rf = RandomForestClassifier()
@@ -47,7 +65,7 @@ def ROC(alg, X_test, Y_test):
     plt.ylabel("True Positive Rate")
     plt.title("Receiver Operator Characteristic")
     plt.legend(loc="lower right")
-    plt.show()
+    plt.savefig("ROC_CURVE")
 
 def learningCurve(alg, X_train, Y_train):
 
@@ -60,5 +78,5 @@ def learningCurve(alg, X_train, Y_train):
     plt.xlabel("Training Example Size")
     plt.ylabel("Accuracy")
     plt.title("Learning Curve")
-
-    plt.show()
+    plt.legend(loc="lower right")
+    plt.savefig("LEARNING_CURVE")

@@ -5,12 +5,12 @@ Tommy:
 - SVM (linear)
 - neural network
 - logistic regression
+- website design
 Sean:
 - introduced algorithm/future objectives
 - random forest
 - neural network
 - ROC/learning curve for both
-- website design
 Paul:
 - NN, SVM, logistic
 - Parameter tuning

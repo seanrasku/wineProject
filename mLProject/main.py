@@ -10,21 +10,26 @@ def main():
     X_trainQ, Y_trainQ, X_testQ, Y_testQ, XQ, yQ = neuralnetworks.buildQuality(filename)
     X_trainC, Y_trainC, X_testC, Y_testC, XC, yC = neuralnetworks.buildColor(filename)
     # Classification By Quality:
-    rf = neuralnetworks.randForestClassifier(X_trainQ, Y_trainQ)
-    mlp = neuralnetworks.mlpClassifier(X_trainQ, Y_trainQ)
-    neuralnetworks.learningCurve(rf, X_trainQ, Y_trainQ)
-    neuralnetworks.learningCurve(mlp, X_trainQ, Y_trainQ)
-    neuralnetworks.ROC(rf, X_testQ, Y_testQ)
-    neuralnetworks.ROC(mlp, X_testQ, Y_testQ)
-    classifiedIncorrectQuality = np.sum(neuralnetworks.predictQuality(mlp, X_testQ, Y_testQ) &
-                                        neuralnetworks.predictQuality(rf, X_testQ, Y_testQ))
+    rfQ = neuralnetworks.randForestClassifier(X_trainQ, Y_trainQ)
+    mlpQ = neuralnetworks.mlpClassifier(X_trainQ, Y_trainQ)
+    # neuralnetworks.learningCurve(rfQ, X_trainQ, Y_trainQ)
+    # neuralnetworks.learningCurve(mlpQ, X_trainQ, Y_trainQ)
+    # neuralnetworks.ROC(rfQ, X_testQ, Y_testQ)
+    # neuralnetworks.ROC(mlpQ, X_testQ, Y_testQ)
+    classifiedIncorrectQuality = np.sum(neuralnetworks.predictQuality(mlpQ, X_testQ, Y_testQ) &
+                                        neuralnetworks.predictQuality(rfQ, X_testQ, Y_testQ))
+    print("Classified incorrect for Quality: ", classifiedIncorrectQuality)
+
     # Classification By Color:
-    rf = neuralnetworks.randForestClassifier(X_trainC, Y_trainC)
-    mlp = neuralnetworks.mlpClassifier(X_trainC, Y_trainC)
-    neuralnetworks.learningCurve(rf, X_trainC, Y_trainC)
-    neuralnetworks.learningCurve(mlp, X_trainC, Y_trainC)
-    neuralnetworks.ROC(rf, X_testC, Y_testC)
-    neuralnetworks.ROC(mlp, X_testC, Y_testC)
+    rfC = neuralnetworks.randForestClassifier(X_trainC, Y_trainC)
+    mlpC = neuralnetworks.mlpClassifier(X_trainC, Y_trainC)
+    #neuralnetworks.learningCurve(rfC, X_trainC, Y_trainC)
+    neuralnetworks.learningCurve(mlpC, X_trainC, Y_trainC)
+    #neuralnetworks.ROC(rfC, X_testC, Y_testC)
+    neuralnetworks.ROC(mlpC, X_testC, Y_testC)
+    #classifiedIncorrectColor = np.sum(neuralnetworks.predictQuality(mlpC, X_testC, Y_testC) &
+    #                                    neuralnetworks.predictQuality(rfC, X_testC, Y_testC))
+    #print("Classified incorrect for Color: ", classifiedIncorrectColor)
 if __name__ == '__main__':
     main()
 

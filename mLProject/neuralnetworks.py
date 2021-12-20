@@ -49,7 +49,7 @@ def randForestClassifier(X_train, Y_train):
     return rf
 
 def mlpClassifier(X_train, Y_train):
-    m = MLPClassifier(solver="adam", alpha=1, hidden_layer_sizes=(30,), random_state=1)
+    m = MLPClassifier(solver="adam", alpha=1, hidden_layer_sizes=np.repeat(30,), random_state=1)
     m.fit(X_train, Y_train)
     return m
 

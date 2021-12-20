@@ -1,0 +1,54 @@
+CS438 Final Report Descriptions:
+
+Quality:
+	Neural Network:
+
+		The neural network performed about average, with an accuracy of 0.756. This accuracy means that it didn’t perform above average, but also didn’t perform poorly either. Scikit-learn was also used to generate an MLP classifier that corresponded with our data, which was used to generate learning curves and ROC curves. Also, with the algorithm taking a while to run, and having an accuracy below 80%, we tried to run it with more neurons per layer. This did nothing to help the accuracy, as it still lingered around 75%, so we left 30 per layer in the code. 
+
+	Learning Curve: 
+		The learning curve for the neural network definitely performed better than the learning curve for the RFC. The training and validation scores are definitely converging, and look to be about right, although it could be minorly underfitting. This is important because it shows that although the RFC’s ROC curve demonstrated it is more accurate when it comes to simple classification, the learning curve of the neural network shows that the final product is much more accurate than the RFC due to significant overfitting on the RFC’s side. 
+
+	ROC Curve: 
+		The ROC Curve for the Neural Network algorithm performed well, but not as well as the ROC curve for the RFC algorithm. With an AUC of 0.732, this algorithm is still good at distinguishing which wines have good quality versus bad, but it has a fairly large False Positive Rate, which results in a smaller AUC than the RFC algorithm. 
+
+
+	Random Forest Classifier:
+
+		The Random Forest Classifier algorithm did very well, and finished with an accuracy of over 80% at 0.826. To achieve this, scikit-learn was used to build a RFC that corresponded with the data we are using for this project. The model was then fitted and returned in the randForestClassifier method.
+
+	Learning Curve: 
+		The RFC learning curve performed poorly, as there is an obvious overfit present. The training score is constant at a 1, and the cross validation score is slowly creeping up to meet it. On the graph, I track accuracy on the y-axis rather than error, so this graph is the upside-down version of what would appear if we had the error on the y-axis. This learning curve performs poorly in contrast to the learning curve for the neural network, as the neural network learning curve shows signs of convergence, and the fit is much better. 
+
+	ROC Curve:
+		The RFC ROC curve performed very well in contrast to the learning curve for this method, with an AUC of 0.807. The high AUC means that this model is very good at predicting which wines have good quality and which ones do not. The ROC curve for this method is  better than the ROC curve for the neural network, which is a sign that the RFC would be a better method to use when it comes to ability to classify correctly. 
+
+
+	Error Analysis:
+		Comparing the errors across both algorithms, about 165 wines were classified incorrectly in both instances. This is out of 1300 possible wines, so about 13% were not able to be classified correctly. To find this, we plugged the algorithm used, X_test, and Y_test into a prediction function and used bitwise operators to find the incorrectly classified wines each algorithm had in common.  
+
+Color:
+
+	Neural Network:
+
+		The neural network performed about excellent, with an accuracy of 99%. An accuracy this high means that the classification algorithm is correctly classifying the vast majority of the wines that it comes across. We left 30 neurons per layer in the code for the same reason described above in quality. 
+
+	Learning Curve: 
+		The learning curve for the neural network performed well, and this can be seen visibly with the training and cross-validation sets converging at the end. This learning curve could be minorly underfitting, but it seems to be just about right. Like quality, the accuracy is on the y-axis, making the curve shown the opposite of what it would look like if error were on the y-axis instead. 
+
+	ROC Curve: 
+		The ROC Curve for the Neural Network algorithm definitely performed well, with an AUC of 0.992. This is indicative of an algorithm that classifies almost everything perfectly, and this is further confirmed in the error anaylsis below. 
+
+
+	Random Forest Classifier:
+
+		The Random Forest Classifier algorithm did better for color than it did for quality for sure. The learning curve and ROC both improved dramatically, and the accuracy did as well, coming in at 99%. This means that this algorithm performed almost as well as the neural network did, with the learning curve being the only part that is still not up to standards. 
+
+	Learning Curve: 
+		The RFC learning curve didn't perform amazing, but it can be seen that with more training examples, this graph could converge nicely. The graph seems to be flattening up a bit at the end, but more training examples could further close the gap and prevent overfitting. 
+
+	ROC Curve:
+		The RFC ROC curve performed very well, just like the neural network ROC curve. With an AUC of 0.995, the algorithm classified near perfectly, and left very little room for error.  
+
+
+	Error Analysis:
+		Comparing the errors across both algorithms, only 3 wines were classified incorrectly in both instances. This is out of 1300 possible wines, so with only 3 wines being classified incorrectly, we have less than 1% of the wine being misclassified. This is very ideal, and means that for color, our algorithm performed much better than for quality. 

@@ -1,0 +1,22 @@
+work done:
+Tommy:
+- introduced project and data
+- random forest
+- SVM (linear)
+- neural network
+- logistic regression
+- website design
+Sean:
+- introduced algorithm/future objectives
+- random forest
+- neural network
+- ROC and learning curve for quality for each algorithm
+- ROC and learning curve for color for each algorithm
+- Error analysis for random forest and neural network
+- 
+Paul:
+- NN, SVM, logistic
+- Parameter tuning
+- plotted dataset, introduced methods
+- learning curve 
+- Code review

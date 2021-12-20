@@ -1,0 +1,15 @@
+logistic regression:
+
+The logistic regression had a best accuracy of 0.73 (lambda=5.61) for quality and 0.99 (lambda=0.40) for color. Tuning was a bit odd because the validation set had a higher accuracy in some cases. This indicates that the model is doing a good job of generalizing. The accuracy was much higher for color than quality, indicating that that dataset is more linearly separable.
+
+Linear SVM:
+
+For linear SVM, the accuracy was pretty similar, with 0.74 (C=0.15) for quality and 0.99 (C=0.28) for color. Note that for SVM models, the regularization parameter C is the inverse of lambda, so a lower C means more regularization.
+
+Gaussian SVM
+
+The gaussian SVM for quality achieved a better accuracy of 0.77 (C=47.15, gamma=0.09), meaning that it most likely generalizes better. For color, it achieved a 1.00 accuracy, with C=2.56 and gamma=0.09. This data was already well classified by the previous models, so this is unsurprising. The gamma value controls the range of influence of each point selected for the kernel.
+
+Neural Network:
+
+TODO
